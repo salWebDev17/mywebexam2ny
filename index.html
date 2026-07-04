@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovelRead - Discover Your Next Story</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="index.html" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">NovelRead</a>
+                
+                <!-- Search Bar -->
+                <div class="hidden md:block flex-1 max-w-lg mx-8">
+                    <input type="text" placeholder="Search novels, authors, tags..." class="w-full px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 border-none focus:ring-2 focus:ring-indigo-500 outline-none text-sm">
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <!-- Sun/Moon Icon (SVG) -->
+                        <svg id="theme-icon-light" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg id="theme-icon-dark" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <a href="#" class="px-4 py-2 bg-indigo-600 text-white rounded-full text-sm font-medium hover:bg-indigo-700 transition">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Hero Section (Featured Novel) -->
+        <section class="relative rounded-2xl overflow-hidden bg-gradient-to-r from-indigo-900 to-purple-900 text-white mb-12 shadow-xl">
+            <div class="p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+                <img src="https://placehold.co/200x300/4f46e5/ffffff?text=Featured+Book" alt="Book Cover" class="w-40 md:w-48 rounded-lg shadow-2xl border-4 border-white/20">
+                <div class="text-center md:text-left">
+                    <span class="px-3 py-1 bg-yellow-400 text-yellow-900 text-xs font-bold rounded-full uppercase">Novel of the Week</span>
+                    <h1 class="text-3xl md:text-5xl font-bold mt-4 mb-3">The Dragon's Heir</h1>
+                    <p class="text-gray-200 text-lg mb-6 max-w-xl">An epic tale of magic, betrayal, and destiny. When the last dragon falls, a young orphan must rise to claim a throne forged in fire.</p>
+                    <a href="reader.html" class="inline-block px-8 py-3 bg-white text-indigo-900 font-bold rounded-full hover:bg-gray-100 transition transform hover:scale-105">Start Reading</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Novels -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Trending Now 🔥</h2>
+                <a href="#" class="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">View All</a>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                <!-- Book Card Template -->
+                <a href="reader.html" class="group">
+                    <div class="aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md group-hover:shadow-xl transition-shadow">
+                        <img src="https://placehold.co/300x400/1e293b/f8fafc?text=Book+1" alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">The Dragon's Heir</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">J.R. Tolkien</p>
+                    <div class="flex items-center mt-1 text-yellow-500 text-sm">
+                        ★★★★★ <span class="text-gray-500 dark:text-gray-400 ml-1">4.8</span>
+                    </div>
+                </a>
+                <!-- Repeat cards for demo -->
+                <a href="reader.html" class="group"><div class="aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md"><img src="https://placehold.co/300x400/0f172a/f8fafc?text=Book+2" alt="Book" class="w-full h-full object-cover"></div><h3 class="font-semibold truncate">Neon Shadows</h3><p class="text-sm text-gray-500">Cyber P.</p></a>
+                <a href="reader.html" class="group"><div class="aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md"><img src="https://placehold.co/300x400/831843/f8fafc?text=Book+3" alt="Book" class="w-full h-full object-cover"></div><h3 class="font-semibold truncate">Love in Stars</h3><p class="text-sm text-gray-500">Luna M.</p></a>
+                <a href="reader.html" class="group"><div class="aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md"><img src="https://placehold.co/300x400/064e3b/f8fafc?text=Book+4" alt="Book" class="w-full h-full object-cover"></div><h3 class="font-semibold truncate">System Overload</h3><p class="text-sm text-gray-500">LitRPG Pro</p></a>
+                <a href="reader.html" class="group"><div class="aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md"><img src="https://placehold.co/300x400/78350f/f8fafc?text=Book+5" alt="Book" class="w-full h-full object-cover"></div><h3 class="font-semibold truncate">Desert Mirage</h3><p class="text-sm text-gray-500">A. R. Rahman</p></a>
+            </div>
+        </section>
+
+        <!-- Latest Updates -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6">Latest Updates 🕒</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-700">
+                <a href="reader.html" class="flex items-center p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition">
+                    <img src="https://placehold.co/60x80/1e293b/f8fafc?text=B1" class="w-12 h-16 rounded object-cover mr-4">
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-semibold truncate">The Dragon's Heir</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Chapter 45: The Awakening</p>
+                    </div>
+                    <span class="text-xs text-gray-400 ml-4 whitespace-nowrap">2 hours ago</span>
+                </a>
+                <a href="reader.html" class="flex items-center p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition">
+                    <img src="https://placehold.co/60x80/0f172a/f8fafc?text=B2" class="w-12 h-16 rounded object-cover mr-4">
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-semibold truncate">Neon Shadows</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Chapter 12: City of Glass</p>
+                    </div>
+                    <span class="text-xs text-gray-400 ml-4 whitespace-nowrap">5 hours ago</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript for Dark Mode -->
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            // Optional: save preference to localStorage
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Load theme on page load
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>

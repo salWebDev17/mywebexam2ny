@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 45: The Awakening - The Dragon's Heir</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Reader Themes */
+        .theme-light { background-color: #ffffff; color: #1f2937; }
+        .theme-dark { background-color: #111827; color: #f3f4f6; }
+        .theme-sepia { background-color: #f4f1ea; color: #5b4636; }
+        
+        /* Hide scrollbar for settings panel */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="theme-light transition-colors duration-300">
+
+    <!-- Top Navigation (Auto-hides on scroll) -->
+    <header id="reader-header" class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transition-transform duration-300">
+        <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="index.html" class="flex items-center text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                <span class="hidden sm:inline font-medium">Book Info</span>
+            </a>
+            
+            <h1 class="text-sm font-semibold truncate px-4">Ch. 45: The Awakening</h1>
+            
+            <div class="flex items-center space-x-2">
+                <button id="settings-btn" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Settings Panel (Slide out) -->
+    <div id="settings-panel" class="fixed top-14 right-0 w-72 h-[calc(100vh-3.5rem)] bg-white dark:bg-gray-800 shadow-2xl border-l border-gray-200 dark:border-gray-700 transform translate-x-full transition-transform duration-300 z-40 p-6 overflow-y-auto">
+        <h3 class="font-bold text-lg mb-6">Reading Settings</h3>
+        
+        <!-- Font Size -->
+        <div class="mb-8">
+            <label class="block text-sm font-medium mb-2">Font Size</label>
+            <div class="flex items-center justify-between bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+                <button id="font-decrease" class="px-4 py-2 rounded-md hover:bg-white dark:hover:bg-gray-600 transition font-bold">A-</button>
+                <span id="font-size-display" class="font-medium">18px</span>
+                <button id="font-increase" class="px-4 py-2 rounded-md hover:bg-white dark:hover:bg-gray-600 transition font-bold">A+</button>
+            </div>
+        </div>
+
+        <!-- Font Family -->
+        <div class="mb-8">
+            <label class="block text-sm font-medium mb-2">Font Family</label>
+            <div class="grid grid-cols-2 gap-2">
+                <button data-font="serif" class="font-btn px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 font-serif hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:border-indigo-500 transition">Serif</button>
+                <button data-font="sans" class="font-btn px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 font-sans hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:border-indigo-500 transition">Sans</button>
+            </div>
+        </div>
+
+        <!-- Themes -->
+        <div>
+            <label class="block text-sm font-medium mb-2">Theme</label>
+            <div class="grid grid-cols-3 gap-2">
+                <button data-theme="light" class="theme-btn h-10 rounded-lg border-2 border-gray-300 bg-white hover:border-indigo-500 transition" title="Light"></button>
+                <button data-theme="dark" class="theme-btn h-10 rounded-lg border-2 border-gray-600 bg-gray-900 hover:border-indigo-500 transition" title="Dark"></button>
+                <button data-theme="sepia" class="theme-btn h-10 rounded-lg border-2 border-amber-300 bg-[#f4f1ea] hover:border-indigo-500 transition" title="Sepia"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Reading Content -->
+    <main class="pt-20 pb-24 px-4">
+        <article id="reader-content" class="max-w-3xl mx-auto font-serif text-lg leading-loose">
+            <h2 class="text-3xl font-bold mb-8 text-center">Chapter 45: The Awakening</h2>
+            
+            <p class="mb-6 indent-8">The cavern was silent, save for the rhythmic dripping of water echoing off the obsidian walls. Kaelen held his breath, his hand gripping the hilt of his sword so tightly his knuckles turned white. He could feel the heat radiating from the massive shape slumbering ahead.</p>
+            
+            <p class="mb-6 indent-8">It was a dragon. Not the small, winged pests that plagued the northern farms, but an ancient beast, its scales the color of cooled magma. Smoke curled lazily from its nostrils, each exhale sending a wave of sulfurous air washing over the young knight.</p>
+            
+            <p class="mb-6 indent-8">"You shouldn't be here, little mouse," a voice rumbled. It didn't come from the dragon's mouth, but echoed directly inside Kaelen's mind. The sheer force of the telepathic voice dropped him to his knees.</p>
+            
+            <p class="mb-6 indent-8">He looked up, meeting a single, massive golden eye that had cracked open to stare at him. The pupil was a vertical slit of pure, ancient intelligence.</p>
+            
+            <p class="mb-6 indent-8">"I... I seek the Flame of Ancestry," Kaelen stammered, hating how small his voice sounded in the vast chamber. "The prophecy stated that only the dragon's fire could reforge the broken blade."</p>
+            
+            <p class="mb-6 indent-8">The dragon let out a sound that might have been a laugh, shaking the very foundations of the cave. Dust rained down from the ceiling. "Prophecies," the dragon mused. "Mortals and their desperate need for destiny. Tell me, Kaelen of Oakhaven, do you truly believe you are worthy?"</p>
+            
+            <p class="mb-6 indent-8">Before Kaelen could answer, the dragon shifted. The sound of scales scraping against stone was deafening. The beast lowered its massive head until it was inches from Kaelen's face. The heat was unbearable.</p>
+            
+            <p class="mb-6 indent-8">"Worthiness is not given by ancient scrolls," the dragon whispered, its golden eye burning into Kaelen's soul. "It is forged in the fires of sacrifice. Show me your sacrifice, little mouse, and I will show you the flame."</p>
+        </article>
+    </main>
+
+    <!-- Chapter Navigation (Bottom) -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 z-30">
+        <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                Prev
+            </a>
+            <a href="#" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Table of Contents</a>
+            <a href="#" class="flex items-center text-indigo-600 dark:text-indigo-400 font-bold hover:underline">
+                Next
+                <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Reader Interactivity -->
+    <script>
+        // 1. Auto-hide Header on Scroll
+        let lastScrollY = window.scrollY;
+        const header = document.getElementById('reader-header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                header.classList.add('-translate-y-full'); // Hide
+            } else {
+                header.classList.remove('-translate-y-full'); // Show
+            }
+            lastScrollY = window.scrollY;
+        });
+
+        // 2. Settings Panel Toggle
+        const settingsBtn = document.getElementById('settings-btn');
+        const settingsPanel = document.getElementById('settings-panel');
+
+        settingsBtn.addEventListener('click', () => {
+            settingsPanel.classList.toggle('translate-x-full');
+            settingsPanel.classList.toggle('translate-x-0');
+        });
+
+        // Close panel if clicking outside
+        document.addEventListener('click', (e) => {
+            if (!settingsPanel.contains(e.target) && !settingsBtn.contains(e.target)) {
+                settingsPanel.classList.add('translate-x-full');
+                settingsPanel.classList.remove('translate-x-0');
+            }
+        });
+
+        // 3. Font Size Controls
+        const content = document.getElementById('reader-content');
+        const fontDecrease = document.getElementById('font-decrease');
+        const fontIncrease = document.getElementById('font-increase');
+        const fontSizeDisplay = document.getElementById('font-size-display');
+        let currentFontSize = 18;
+
+        fontDecrease.addEventListener('click', () => {
+            if (currentFontSize > 14) {
+                currentFontSize -= 2;
+                updateFontSize();
+            }
+        });
+
+        fontIncrease.addEventListener('click', () => {
+            if (currentFontSize < 28) {
+                currentFontSize += 2;
+                updateFontSize();
+            }
+        });
+
+        function updateFontSize() {
+            content.style.fontSize = `${currentFontSize}px`;
+            fontSizeDisplay.textContent = `${currentFontSize}px`;
+        }
+
+        // 4. Font Family Controls
+        const fontBtns = document.querySelectorAll('.font-btn');
+        fontBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const font = btn.getAttribute('data-font');
+                content.className = content.className.replace(/font-(serif|sans)/g, '');
+                content.classList.add(`font-${font}`);
+                
+                // Update active state
+                fontBtns.forEach(b => b.classList.remove('bg-indigo-100', 'dark:bg-indigo-900/50', 'border-indigo-500'));
+                btn.classList.add('bg-indigo-100', 'dark:bg-indigo-900/50', 'border-indigo-500');
+            });
+        });
+
+        // 5. Theme Controls
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.getAttribute('data-theme');
+                document.body.className = document.body.className.replace(/theme-(light|dark|sepia)/g, '');
+                document.body.classList.add(`theme-${theme}`);
+
+                // Update active state
+                themeBtns.forEach(b => b.classList.remove('ring-2', 'ring-indigo-500', 'ring-offset-2'));
+                btn.classList.add('ring-2', 'ring-indigo-500', 'ring-offset-2');
+            });
+        });
+    </script>
+</body>
+</html>
